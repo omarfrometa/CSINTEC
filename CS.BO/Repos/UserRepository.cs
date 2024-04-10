@@ -29,8 +29,11 @@ namespace CS.BO.Repos
         }
 
         public User GetById(int id)
-        { 
-            return _users.FirstOrDefault(x => x.Id == id);
+        {
+            using (var context = new ApplicationContext())
+            {
+                return context.User.FirstOrDefault(x => x.Id == id);
+            }
         }
 
         public IEnumerable<User> GetAlls()
